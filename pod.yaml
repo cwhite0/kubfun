@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: apache2
+spec:
+  selector:
+    matchLabels:
+      app: apache2
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apache2
+    spec:
+      containers:
+      - name: apache2
+        image: my-apache2:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
